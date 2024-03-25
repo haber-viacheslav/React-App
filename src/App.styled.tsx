@@ -13,11 +13,11 @@ export const StyledAsideMessage = styled.h2`
   font-size: 30px;
 
   font-weight: ${props => props.theme.fontWeights.bold};
-  @media screen and (${props => props.theme.media.laptop}) {
+  @media screen and (${props => props.theme.media.mdToLg}) {
     font-size: 36px;
     padding: 20px;
   }
-  @media screen and (${props => props.theme.media.laptopL}) {
+  @media screen and (${props => props.theme.media.lg}) {
     font-size: 48px;
     padding: 40px;
   }

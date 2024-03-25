@@ -13,8 +13,3 @@ export const StyledHeaderLogo = styled.a`
   font-size: 24px;
   color: ${props => props.theme.colors.black};
 `;
-export const StyledHeaderLogoThin = styled.span`
-  font-family: inherit;
-  font-weight: ${props => props.theme.fontWeights.regular};
-  font-size: 24px;
-`;
