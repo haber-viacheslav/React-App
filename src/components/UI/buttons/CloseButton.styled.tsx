@@ -16,7 +16,6 @@ export const StyledCloseButton = styled.button`
   transition: 250ms background-color ease-in-out, 250ms box-shadow ease-in-out;
   &:hover,
   &:focus {
-    background-color: ${props => props.theme.colors.white};
     box-shadow: ${props => props.theme.shadows.thirdShadow};
   }
 `;
