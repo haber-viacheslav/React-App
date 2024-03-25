@@ -6,7 +6,7 @@ export const Header = () => {
   return (
     <StyledHeader>
       <Container>
-        <StyledHeaderLogo href="/"></StyledHeaderLogo>
+        <StyledHeaderLogo href="/">My Task Board</StyledHeaderLogo>
       </Container>
     </StyledHeader>
   );
