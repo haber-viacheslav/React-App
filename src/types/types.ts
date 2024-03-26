@@ -12,20 +12,20 @@ export enum ModalVariant {
   UpdateList,
 }
 
-export interface ModalProps {
+export interface IModalProps {
   onClick: () => void;
   variant: ModalVariant;
   children: ReactNode;
 }
 
-export interface HeaderProps {
+export interface IHeaderProps {
   children?: ReactNode;
 }
 
 export enum ButtonStyle {
   Dark = 'dark',
-  TransparentWithBorder = 'transparentWithBorder',
-  TransparentWithoutBorder = 'transparentWithoutBorder',
+  Light = 'light',
+  WithoutBorder = 'withoutBorder',
   Dotted = 'dotted',
 }
 
@@ -34,4 +34,17 @@ export interface ButtonProps {
   icon?: IconType;
   text?: string;
   variant?: ButtonStyle;
+}
+
+export interface ITask {
+  name?: string;
+  status?: string;
+  priority?: 'low' | 'medium' | 'high' | null;
+  description?: string;
+  dueDate?: Date;
+  statusId: number;
+}
+
+export interface IList {
+  listName: string;
 }

@@ -1,14 +1,20 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Overlay, StyledModal, ModalHeader, ModalBody } from './Modal.styled';
-import { ModalProps, ModalVariant } from '../../types/types';
+import { IModalProps, ModalVariant } from '../../types/types';
 import { DeleteTaskListModalContent } from '../ModalContent/DeleteTaskList';
 import { DeleteTaskModalContent } from '../ModalContent/DeleteTask';
 import { TaskActivityModalContent } from '../ModalContent/TaskActivity';
 import { TaskDetailsModalContent } from '../ModalContent/TaskDetails';
+import { AddListForm } from '../Forms/AddListForm';
+import { AddTaskForm } from '../Forms/AddTaskForm';
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal: React.FC<ModalProps> = ({ onClick, variant, children }) => {
+export const Modal: React.FC<IModalProps> = ({
+  onClick,
+  variant,
+  children,
+}) => {
   let modalContent: React.ReactNode;
 
   switch (variant) {
@@ -25,10 +31,10 @@ export const Modal: React.FC<ModalProps> = ({ onClick, variant, children }) => {
       modalContent = <DeleteTaskListModalContent />;
       break;
     case ModalVariant.AddList:
-      modalContent = <DeleteTaskModalContent />;
+      modalContent = <AddListForm />;
       break;
     case ModalVariant.AddTask:
-      modalContent = <DeleteTaskListModalContent />;
+      modalContent = <AddTaskForm />;
       break;
     default:
       modalContent = null;

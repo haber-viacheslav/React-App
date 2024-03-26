@@ -2,9 +2,10 @@ import React from 'react';
 import { ButtonProps, ButtonStyle } from '../../../types/types';
 import {
   StyledCloseButton,
-  TransparentWithBorderButton,
+  StyledLightButton,
   TransparentWithoutBorderButton,
   StyledDottedButton,
+  StyledDarkButton,
 } from './Button.styled';
 
 export const Button: React.FC<ButtonProps> = ({
@@ -17,12 +18,12 @@ export const Button: React.FC<ButtonProps> = ({
 
   switch (variant) {
     case ButtonStyle.Dark:
-      ButtonStyled = StyledCloseButton;
+      ButtonStyled = StyledDarkButton;
       break;
-    case ButtonStyle.TransparentWithBorder:
-      ButtonStyled = TransparentWithBorderButton;
+    case ButtonStyle.Light:
+      ButtonStyled = StyledLightButton;
       break;
-    case ButtonStyle.TransparentWithoutBorder:
+    case ButtonStyle.WithoutBorder:
       ButtonStyled = TransparentWithoutBorderButton;
       break;
     case ButtonStyle.Dotted:
@@ -35,7 +36,13 @@ export const Button: React.FC<ButtonProps> = ({
 
   return (
     <ButtonStyled type="button" onClick={onClick}>
-      {Icon && <Icon color="#ffffff" size={20} />}
+      {Icon && (
+        <Icon
+          color={ButtonStyled === StyledDarkButton ? '#ffffff' : '#504b5f'}
+          size={18}
+        />
+      )}
+
       {text && <span>{text}</span>}
     </ButtonStyled>
   );
