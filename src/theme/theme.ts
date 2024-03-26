@@ -11,8 +11,10 @@ export const theme = Object.freeze({
   },
   colors: {
     backdrop: '#42424279',
-    red: '#cf0404',
+    red: '#CF0404',
     darkGrey: '#262626',
+    mainGrey: '#3e3a49',
+    midGrey: '#504b5f',
     lightGrey: '#9A9A9A',
     light: '#f0f0f0',
     lightArrowBtn: '#1890FF50',
@@ -24,7 +26,7 @@ export const theme = Object.freeze({
     asideBgNightColor: '#110E3B',
   },
   shadows: {
-    mainShadow: '3px 8px 14px rgba(136, 198, 253, 0.19)',
+    mainShadow: '2px 2px 4px 2px rgba(201,201,201,0.66);',
     secondShadow: '7px 13px 14px rgba(116, 177, 232, 0.24)',
     thirdShadow: '2px 3px 4px rgba(136, 198, 253, 0.4)',
     scrollBtnShadow: ' inset 2px 4px 6px rgba(255, 255, 255, 0.8)',

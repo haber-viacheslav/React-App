@@ -1,12 +1,15 @@
 import React from 'react';
-import { Container } from '../Container/Container';
+import { Container, ContainerFlex } from '../Container/Container';
 import { StyledHeader, StyledHeaderLogo } from './Header.styled';
-
-export const Header = () => {
+import { IHeaderProps } from '../../../types/types';
+export const Header: React.FC<IHeaderProps> = ({ children }) => {
   return (
     <StyledHeader>
       <Container>
-        <StyledHeaderLogo href="/">My Task Board</StyledHeaderLogo>
+        <ContainerFlex>
+          <StyledHeaderLogo href="/">My Task Board</StyledHeaderLogo>
+          {children}
+        </ContainerFlex>
       </Container>
     </StyledHeader>
   );
