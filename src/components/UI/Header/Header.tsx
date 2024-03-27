@@ -1,15 +1,15 @@
 import React from 'react';
-import { Container, ContainerFlex } from '../Container/Container';
-import { StyledHeader, StyledHeaderLogo } from './Header.styled';
+import { Container } from '../Container/Container';
+import { StyledHeader, StyledHeaderLogo, FlexContainer } from './Header.styled';
 import { IHeaderProps } from '../../../types/types';
 export const Header: React.FC<IHeaderProps> = ({ children }) => {
   return (
     <StyledHeader>
       <Container>
-        <ContainerFlex>
+        <FlexContainer>
           <StyledHeaderLogo href="/">My Task Board</StyledHeaderLogo>
           {children}
-        </ContainerFlex>
+        </FlexContainer>
       </Container>
     </StyledHeader>
   );

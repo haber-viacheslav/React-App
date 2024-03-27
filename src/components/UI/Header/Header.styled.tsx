@@ -13,3 +13,9 @@ export const StyledHeaderLogo = styled.a`
   font-size: 24px;
   color: ${props => props.theme.colors.black};
 `;
+
+export const FlexContainer = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;

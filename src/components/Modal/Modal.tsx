@@ -65,7 +65,7 @@ export const Modal: React.FC<IModalProps> = ({
 
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
-      <StyledModal>
+      <StyledModal variant={variant}>
         <ModalHeader>{children}</ModalHeader>
         <ModalBody>{modalContent}</ModalBody>
       </StyledModal>

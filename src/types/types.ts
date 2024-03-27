@@ -48,3 +48,22 @@ export interface ITask {
 export interface IList {
   listName: string;
 }
+
+export interface Task {
+  id: number;
+  name: string;
+  status: string;
+  statusId: number;
+  priority: string;
+  dueDate: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+export interface List {
+  id: number;
+  listName: string;
+  createdAt: string;
+  updatedAt: string;
+}

@@ -14,15 +14,11 @@ import { AddButton } from './components/UI/buttons/AddButton';
 import { Button } from './components/UI/buttons/Button';
 import { ButtonStyle } from './types/types';
 
-import { useResize } from './hooks/useResize';
 export function App() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [modalVariant, setModalVariant] = useState<ModalVariant>(
     ModalVariant.TaskDetails
   );
-
-  const size = useResize();
-  console.log(size);
 
   const handleSetVariant = (variant: ModalVariant): void => {
     setModalVariant(variant);
