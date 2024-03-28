@@ -9,8 +9,8 @@ export const StyledFormButton = styled.button`
   background-color: ${props => props.theme.colors.clearWhite};
   color: ${props => props.theme.colors.darkGrey};
   padding: 4px 8px;
-  transition: 250ms background-color ease-in-out, 250ms box-shadow ease-in-out,
-    250ms color ease-in-out, 250ms border-color ease-in-out;
+  transition: 400ms background-color ease-in-out, 400ms box-shadow ease-in-out,
+    400ms color ease-in-out, 400ms border-color ease-in-out;
   cursor: pointer;
   &:hover,
   &:focus {

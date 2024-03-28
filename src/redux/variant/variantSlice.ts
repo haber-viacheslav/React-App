@@ -1,8 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
-
+import { ModalVariant } from '../../types/types';
 const variantSlice = createSlice({
   name: 'variant',
-  initialState: '',
+  initialState: ModalVariant.TaskDetails,
   reducers: {
     setVariantValue(state, action) {
       return (state = action.payload);

@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Formik, FormikHelpers } from 'formik';
-import { IList } from '@/types/types';
+import { IoMdAdd } from 'react-icons/io';
+import { toast } from 'react-hot-toast';
+import { IList } from '../../types/types';
 import { AddListSchema } from '../../helpers/validation';
+
 import {
   FormWrap,
   FormErrorMessage,
@@ -10,15 +13,42 @@ import {
   FormInputWrp,
   FormButton,
 } from './Forms.styled';
+import { useAppDispatch, useAppSelector } from '../../redux/hook/hook';
+import { addList, fetchLists } from '../../redux/lists/operations';
+import { selectLists } from '../../redux/lists/selectors';
+import { isListExists } from '../../helpers/isListExists';
+import { IAddListForm } from '../../types/types';
 
 const initialValues = {
   listName: '',
 };
-export const AddListForm: React.FC = () => {
-  const handleSubmit = (values: IList, { resetForm }: FormikHelpers<IList>) => {
-    console.log(values);
+export const AddListForm: React.FC<IAddListForm> = ({ onClick }) => {
+  const dispatch = useAppDispatch();
+  const lists = useAppSelector(selectLists);
+
+  const handleSubmit = async (
+    values: IList,
+    { resetForm }: FormikHelpers<IList>
+  ) => {
+    if (isListExists(lists, values)) {
+      toast.error(`Error! 😲 ${values.listName} is already in contacts`, {
+        duration: 2000,
+        style: {
+          borderRadius: '10px',
+          background: '#333',
+          color: '#fff',
+        },
+      });
+      return;
+    }
+    dispatch(addList(values));
+    onClick();
     resetForm();
   };
+
+  useEffect(() => {
+    dispatch(fetchLists());
+  }, [dispatch]);
   return (
     <Formik
       initialValues={initialValues}
@@ -27,12 +57,14 @@ export const AddListForm: React.FC = () => {
     >
       <FormWrap autoComplete="off">
         <FormInputWrp htmlFor="listName">
-          <FormLabel>Name</FormLabel>
+          <FormLabel>List Name</FormLabel>
           <FormInput type="text" name="listName" />
           <FormErrorMessage name="listName" component="span" />
         </FormInputWrp>
 
-        <FormButton type="submit">Add list</FormButton>
+        <FormButton type="submit">
+          <IoMdAdd />
+        </FormButton>
       </FormWrap>
     </Formik>
   );

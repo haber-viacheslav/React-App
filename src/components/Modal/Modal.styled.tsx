@@ -29,31 +29,62 @@ export const StyledModal = styled.div<StyledModalProps>`
           transform: translate(-50%, -20%);
           width: 80%;
           height: 80%;
+          border-radius: 8px;
         `;
       case ModalVariant.TaskActivity:
         return `
           top: 0;
-          right: 10%;
-          width: 80%;
-          height: 70%;
+          right: 0;
+          height: 100vh;
+           @media screen and (max-width: 480px) {
+          width: 100%;
+  }
+          width: 400px;
+        `;
+      case ModalVariant.MobileMenu:
+        return `
+          top: 0;
+          right: 0;
+          width: 100%;
+          height: 100%;
+        `;
+      case ModalVariant.AddList:
+        return `
+          top: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 340px;
+          border-radius: 8px;
         `;
       default:
         return `
-          top: 40px;
+          top: 10%;
           left: 50%;
           transform: translateX(-50%);
-          width: 680px;
-          height: 500px;
+          width: 340px;
+          border-radius: 8px;
+        
         `;
     }
   }}
 `;
-export const ModalHeader = styled.div`
-  padding: 20px 0;
-  background-color: ${props => props.theme.colors.darkGrey};
+export const ModalHeader = styled.div<StyledModalProps>`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: ${props => props.theme.colors.mainGrey};
+  ${({ variant }) =>
+    variant === ModalVariant.TaskActivity
+      ? `padding: 10px 20px;`
+      : `padding: 20px 0;`};
 `;
 
 export const ModalBody = styled.div`
   background-color: ${props => props.theme.colors.clearWhite};
   padding: 0 20px;
+`;
+
+export const StyledModalTitle = styled.p`
+  color: ${props => props.theme.colors.clearWhite};
+  font-weight: ${props => props.theme.colors.medium};
 `;

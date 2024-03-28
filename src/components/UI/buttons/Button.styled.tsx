@@ -13,6 +13,7 @@ export const StyledDarkButton = styled.button`
   background-color: ${props => props.theme.colors.mainGrey};
   color: ${props => props.theme.colors.clearWhite};
   padding: 10px 20px;
+  max-height: 44px;
   transition: 400ms background-color ease-in-out, 400ms box-shadow ease-in-out,
     400ms color ease-in-out;
   cursor: pointer;
@@ -41,20 +42,23 @@ export const StyledDottedButton = styled.button`
 `;
 export const StyledCloseButton = styled.button`
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 8px;
+  right: 12px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 26px;
-  height: 26px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   border: none;
   background-color: ${props => props.theme.colors.transparent};
   cursor: pointer;
-  transition: 250ms background-color ease-in-out, 250ms box-shadow ease-in-out;
+  transition: 400ms background-color ease-in-out, 400ms box-shadow ease-in-out;
+`;
+export const StyledMobileMenuButton = styled(StyledCloseButton)`
+  position: static;
   &:hover,
   &:focus {
-    box-shadow: ${props => props.theme.shadows.thirdShadow};
+    box-shadow: ${props => props.theme.shadows.mainShadow};
   }
 `;

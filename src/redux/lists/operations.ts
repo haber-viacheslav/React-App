@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { List } from '../../types/types';
+import { List, IList } from '../../types/types';
 axios.defaults.baseURL = 'https://task-board-api-v7h2.onrender.com/api';
 
 export const fetchLists = createAsyncThunk<
@@ -21,26 +21,25 @@ export const fetchLists = createAsyncThunk<
   }
 });
 
-export const addList = createAsyncThunk<
-  List,
-  FormData,
-  { rejectValue: string }
->('lists/addList', async (formData, thunkAPI) => {
-  try {
-    const response: AxiosResponse<List> = await axios.post(
-      '/task_lists',
-      formData
-    );
-    return response.data;
-  } catch (e) {
-    if (axios.isAxiosError(e)) {
-      const axiosError = e as AxiosError;
-      return thunkAPI.rejectWithValue(axiosError.message);
-    } else {
-      return thunkAPI.rejectWithValue('An error occurred');
+export const addList = createAsyncThunk<List, IList, { rejectValue: string }>(
+  'lists/addList',
+  async (IList, thunkAPI) => {
+    try {
+      const response: AxiosResponse<List> = await axios.post(
+        '/task_lists',
+        IList
+      );
+      return response.data;
+    } catch (e) {
+      if (axios.isAxiosError(e)) {
+        const axiosError = e as AxiosError;
+        return thunkAPI.rejectWithValue(axiosError.message);
+      } else {
+        return thunkAPI.rejectWithValue('An error occurred');
+      }
     }
   }
-});
+);
 
 export const deleteList = createAsyncThunk<
   List,

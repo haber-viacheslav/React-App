@@ -2,19 +2,20 @@ import { ReactNode } from 'react';
 import { IconType } from 'react-icons/lib';
 
 export enum ModalVariant {
-  TaskDetails,
-  TaskActivity,
-  DeleteTask,
-  DeleteTaskList,
-  AddList,
-  AddTask,
-  UpdateTask,
-  UpdateList,
+  TaskDetails = 'details',
+  TaskActivity = 'activity',
+  DeleteTask = 'deleteTask',
+  DeleteTaskList = 'deleteTList',
+  AddList = 'addList',
+  AddTask = 'addTask',
+  UpdateTask = 'updateTask',
+  UpdateList = 'updateList',
+  MobileMenu = 'mobile',
 }
 
 export interface IModalProps {
   onClick: () => void;
-  variant: ModalVariant;
+  variant?: ModalVariant;
   children: ReactNode;
 }
 
@@ -27,9 +28,10 @@ export enum ButtonStyle {
   Light = 'light',
   WithoutBorder = 'withoutBorder',
   Dotted = 'dotted',
+  Mobile = 'mobile',
 }
 
-export interface ButtonProps {
+export interface IButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   icon?: IconType;
   text?: string;
@@ -67,3 +69,9 @@ export interface List {
   createdAt: string;
   updatedAt: string;
 }
+
+export interface IAddListForm {
+  onClick: () => void;
+}
+
+export type ToastVariant = 'success' | 'error' | 'loading';

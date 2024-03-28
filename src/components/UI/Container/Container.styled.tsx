@@ -7,10 +7,9 @@ export const StyledContainer = styled.div`
   width: 100vw;
 
   @media screen and (${props => props.theme.media.mToMd}) {
-    max-width: 480px;
+    max-width: 90%;
   }
   @media screen and (${props => props.theme.media.mdToLg}) {
-    width: 768px;
     padding: 0 30px;
   }
 

@@ -16,7 +16,7 @@
     "typeRoots": ["node_modules/@types", "custom_typings"],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"],
+      "@/*": ["src/*"],
       "~/*": ["./public/*"]
     },
     "incremental": true
