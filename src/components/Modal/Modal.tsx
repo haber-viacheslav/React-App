@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { Overlay, StyledModal, ModalHeader, ModalBody } from './Modal.styled';
+import {
+  Overlay,
+  StyledModal,
+  ModalHeader,
+  ModalBody,
+  StyledModalTitle,
+} from './Modal.styled';
 import { IModalProps, ModalVariant } from '../../types/types';
 import { DeleteTaskListModalContent } from '../ModalContent/DeleteTaskList';
 import { DeleteTaskModalContent } from '../ModalContent/DeleteTask';
@@ -8,13 +14,13 @@ import { TaskActivityModalContent } from '../ModalContent/TaskActivity';
 import { TaskDetailsModalContent } from '../ModalContent/TaskDetails';
 import { AddListForm } from '../Forms/AddListForm';
 import { AddTaskForm } from '../Forms/AddTaskForm';
+import { useAppSelector } from '../../redux/hook/hook';
+import { selectVariant } from '../../redux/variant/selectors';
+import { AppBar } from '../AppBar/AppBar';
 const modalRoot = document.querySelector('#modal-root');
 
-export const Modal: React.FC<IModalProps> = ({
-  onClick,
-  variant,
-  children,
-}) => {
+export const Modal: React.FC<IModalProps> = ({ onClick, children }) => {
+  const variant = useAppSelector(selectVariant);
   let modalContent: React.ReactNode;
 
   switch (variant) {
@@ -31,13 +37,16 @@ export const Modal: React.FC<IModalProps> = ({
       modalContent = <DeleteTaskListModalContent />;
       break;
     case ModalVariant.AddList:
-      modalContent = <AddListForm />;
+      modalContent = <AddListForm onClick={onClick} />;
       break;
     case ModalVariant.AddTask:
       modalContent = <AddTaskForm />;
       break;
+    case ModalVariant.MobileMenu:
+      modalContent = <AppBar />;
+      break;
     default:
-      modalContent = null;
+      modalContent = <TaskDetailsModalContent />;
       break;
   }
 
@@ -65,8 +74,13 @@ export const Modal: React.FC<IModalProps> = ({
 
   return createPortal(
     <Overlay onClick={handleBackdropClick}>
-      <StyledModal>
-        <ModalHeader>{children}</ModalHeader>
+      <StyledModal variant={variant}>
+        <ModalHeader variant={variant}>
+          {variant === ModalVariant.TaskActivity && (
+            <StyledModalTitle>History</StyledModalTitle>
+          )}
+          {children}
+        </ModalHeader>
         <ModalBody>{modalContent}</ModalBody>
       </StyledModal>
     </Overlay>,

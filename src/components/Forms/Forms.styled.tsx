@@ -1,10 +1,11 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 export const FormWrap = styled(Form)`
-  width: 500px;
+  padding: 20px;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  gap: 30px;
+  flex-direction: row;
+  gap: 10px;
 `;
 
 export const FormInputWrp = styled.label`
@@ -23,40 +24,37 @@ export const FormInput = styled(Field)`
   padding: 4px 10px;
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid yellow;
-  border-radius: 8px;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-radius: 2px;
   outline: none;
-  color: #f7f4f0;
-  transition: 250ms box-shadow ease-in-out;
+  color: ${({ theme }) => theme.colors.mainGrey};
+  transition: 400ms box-shadow ease-in-out;
   &:focus,
   &:active {
-    box-shadow: 2px 2px 4px #b8c501;
+    box-shadow: ${({ theme }) => theme.shadows.mainShadow};
   }
 `;
 
 export const FormErrorMessage = styled(ErrorMessage)`
   position: absolute;
   transform: translateY(60px);
-  color: red;
+  color: ${({ theme }) => theme.colors.red};
 `;
 
 export const FormButton = styled.button`
-  display: inline-block;
-  max-width: 120px;
-  align-self: center;
-  padding: 4px 12px;
-  color: white;
-  font-size: 14px;
-  border-radius: 12px;
-  background: linear-gradient(145deg, #0d013e, #2711ba);
-  box-shadow: 2px 6px 8px #2e2bc2, -2px -2px 6px #1d06eb;
-  transition: 250ms transform ease-in-out, 300ms box-shadow ease-out,
-    150ms color ease-in;
+  display: inline-flex;
+  align-self: flex-end;
+  width: 30px;
+  height: 30px;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  color: #0c0404;
+  border-radius: 100%;
+  transition: 400ms box-shadow ease-out;
   cursor: pointer;
   &:hover,
   &:focus {
-    color: #ffbb00;
-    transform: scale(1.1);
-    box-shadow: 2px 6px 8px #b8c501, -2px -2px 6px #fbff00;
+    box-shadow: ${({ theme }) => theme.shadows.mainShadow};
   }
 `;

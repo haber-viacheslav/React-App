@@ -1,14 +1,15 @@
 import React from 'react';
-import { ButtonProps, ButtonStyle } from '../../../types/types';
+import { IButtonProps, ButtonStyle } from '../../../types/types';
 import {
   StyledCloseButton,
   StyledLightButton,
   TransparentWithoutBorderButton,
   StyledDottedButton,
   StyledDarkButton,
+  StyledMobileMenuButton,
 } from './Button.styled';
 
-export const Button: React.FC<ButtonProps> = ({
+export const Button: React.FC<IButtonProps> = ({
   onClick,
   icon: Icon,
   text,
@@ -29,6 +30,9 @@ export const Button: React.FC<ButtonProps> = ({
     case ButtonStyle.Dotted:
       ButtonStyled = StyledDottedButton;
       break;
+    case ButtonStyle.Mobile:
+      ButtonStyled = StyledMobileMenuButton;
+      break;
     default:
       ButtonStyled = StyledCloseButton;
       break;
@@ -38,8 +42,13 @@ export const Button: React.FC<ButtonProps> = ({
     <ButtonStyled type="button" onClick={onClick}>
       {Icon && (
         <Icon
-          color={ButtonStyled === StyledDarkButton ? '#ffffff' : '#504b5f'}
-          size={18}
+          color={
+            ButtonStyled === StyledDarkButton ||
+            ButtonStyled === StyledCloseButton
+              ? '#ffffff'
+              : '#504b5f'
+          }
+          size={24}
         />
       )}
 

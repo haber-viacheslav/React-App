@@ -14,7 +14,7 @@ module.exports = {
     'no-unused-vars': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     'react/no-unescaped-entities': 'off',
-
+    '@typescript-eslint/no-explicit-any': 'off',
     'react/display-name': 'off',
 
     //#region  //*=========== Unused Import ===========
