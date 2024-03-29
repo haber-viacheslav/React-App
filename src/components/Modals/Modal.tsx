@@ -8,8 +8,6 @@ import {
   StyledModalTitle,
 } from './Modal.styled';
 import { IModalProps, ModalVariant } from '../../types/types';
-import { DeleteTaskListModalContent } from '../ModalContent/DeleteTaskList';
-import { DeleteTaskModalContent } from '../ModalContent/DeleteTask';
 import { TaskActivityModalContent } from '../ModalContent/TaskActivity';
 import { TaskDetailsModalContent } from '../ModalContent/TaskDetails';
 import { AddListForm } from '../Forms/AddListForm';
@@ -29,12 +27,6 @@ export const Modal: React.FC<IModalProps> = ({ onClick, children }) => {
       break;
     case ModalVariant.TaskActivity:
       modalContent = <TaskActivityModalContent />;
-      break;
-    case ModalVariant.DeleteTask:
-      modalContent = <DeleteTaskModalContent />;
-      break;
-    case ModalVariant.DeleteTaskList:
-      modalContent = <DeleteTaskListModalContent />;
       break;
     case ModalVariant.AddList:
       modalContent = <AddListForm onClick={onClick} />;

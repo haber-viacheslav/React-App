@@ -42,13 +42,9 @@ const listsSlice = createSlice({
       })
       .addCase(deleteList.fulfilled, (state, action: PayloadAction<List>) => {
         const index = state.items.findIndex(
-          list => list.id === action.payload.id
+          item => item.id === action.payload.id
         );
-        if (index !== -1) {
-          state.items.splice(index, 1);
-          state.isLoading = false;
-          state.error = null;
-        }
+        state.items.splice(index, 1);
       })
       .addMatcher(
         (action: Action<string>) =>

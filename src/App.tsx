@@ -5,8 +5,9 @@ import { Header } from './components/UI/Header/Header';
 import { Main } from './components/UI/Main/Main';
 import { Section } from './components/UI/Section/Section';
 import { Container } from './components/UI/Container/Container';
-import { TaskList } from './components/TaskList/TaskList';
+import { Lists } from './components/Lists/Lists';
 import { Toaster } from 'react-hot-toast';
+
 export function App() {
   return (
     <ThemeProvider theme={theme}>
@@ -14,7 +15,7 @@ export function App() {
       <Main>
         <Section>
           <Container>
-            <TaskList />
+            <Lists />
           </Container>
         </Section>
       </Main>

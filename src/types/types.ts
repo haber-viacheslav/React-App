@@ -1,16 +1,24 @@
 import { ReactNode } from 'react';
 import { IconType } from 'react-icons/lib';
 
+export type ToastVariant = 'success' | 'error' | 'loading';
+
 export enum ModalVariant {
   TaskDetails = 'details',
   TaskActivity = 'activity',
-  DeleteTask = 'deleteTask',
-  DeleteTaskList = 'deleteTList',
   AddList = 'addList',
   AddTask = 'addTask',
   UpdateTask = 'updateTask',
   UpdateList = 'updateList',
   MobileMenu = 'mobile',
+}
+
+export enum ButtonStyle {
+  Dark = 'dark',
+  Light = 'light',
+  WithoutBorder = 'withoutBorder',
+  Dashed = 'dashed',
+  Mobile = 'mobile',
 }
 
 export interface IModalProps {
@@ -23,14 +31,6 @@ export interface IHeaderProps {
   children?: ReactNode;
 }
 
-export enum ButtonStyle {
-  Dark = 'dark',
-  Light = 'light',
-  WithoutBorder = 'withoutBorder',
-  Dotted = 'dotted',
-  Mobile = 'mobile',
-}
-
 export interface IButtonProps {
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   icon?: IconType;
@@ -39,11 +39,11 @@ export interface IButtonProps {
 }
 
 export interface ITask {
-  name?: string;
-  status?: string;
+  name: string;
+  status: string;
   priority?: 'low' | 'medium' | 'high' | null;
   description?: string;
-  dueDate?: Date;
+  dueDate: Date;
   statusId: number;
 }
 
@@ -74,4 +74,17 @@ export interface IAddListForm {
   onClick: () => void;
 }
 
-export type ToastVariant = 'success' | 'error' | 'loading';
+//Redux
+
+export interface IUpdateTaskArgs {
+  id: number;
+  data: Partial<Task>;
+}
+
+export interface ISelectProps {
+  task: Task;
+}
+
+export interface ITaskItemProps {
+  task: Task;
+}

@@ -35,10 +35,35 @@ export const StyledLightButton = styled(StyledDarkButton)`
 `;
 export const TransparentWithoutBorderButton = styled(StyledDarkButton)`
   border: none;
+  width: 180px;
+  justify-content: flex-start;
+  color: ${props => props.theme.colors.mainGrey};
+  background-color: ${props => props.theme.colors.clearWhite};
+  &:hover,
+  &:focus {
+    box-shadow: none;
+    background-color: ${props => props.theme.colors.light};
+  }
 `;
 
-export const StyledDottedButton = styled.button`
-  border: 1px dotted ${props => props.theme.colors.darkGrey};
+export const StyledDashedButton = styled.button`
+  width: 340px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  border-radius: 8px;
+  padding: 8px 0px;
+  border: 1px dashed ${props => props.theme.colors.lightGrey};
+  background-color: ${props => props.theme.colors.clearWhite};
+  @media screen and (${props => props.theme.media.lg}) {
+    width: 295px;
+  }
+`;
+
+export const StyledButtonText = styled.span`
+  font-weight: ${props => props.theme.fontWeights.bold};
+  font-size: 14px;
 `;
 export const StyledCloseButton = styled.button`
   position: absolute;
@@ -57,8 +82,4 @@ export const StyledCloseButton = styled.button`
 `;
 export const StyledMobileMenuButton = styled(StyledCloseButton)`
   position: static;
-  &:hover,
-  &:focus {
-    box-shadow: ${props => props.theme.shadows.mainShadow};
-  }
 `;

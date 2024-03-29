@@ -32,13 +32,13 @@ export const theme = Object.freeze({
     scrollBtnShadow: ' inset 2px 4px 6px rgba(255, 255, 255, 0.8)',
   },
   media: {
-    sm: '(min-width: 360px)',
+    sm: '(min-width: 380px)',
     m: '(min-width: 480px)',
     md: '(min-width: 768px)',
     lg: '(min-width: 1280px)',
     smToM: '(min-width: 360px) and (max-width: 479px)',
     mToMd: '(min-width: 480px) and (max-width: 767px)',
-    mdToLg: '(min-width: 768px) and (max-width: 1279px)',
-    smToLg: '(min-width: 360px) and (max-width: 1279px)',
+    mdToLg: '(min-width: 768px) and (max-width: 1280px)',
+    smToLg: '(min-width: 360px) and (max-width: 1280  px)',
   },
 });

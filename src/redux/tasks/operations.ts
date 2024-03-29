@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { ITask, Task } from '../../types/types';
-
+import { ITask, Task, IUpdateTaskArgs } from '../../types/types';
+axios.defaults.baseURL = 'https://task-board-api-v7h2.onrender.com/api';
 export const fetchTasks = createAsyncThunk<
   Task[],
   void,
@@ -58,21 +58,13 @@ export const deleteTask = createAsyncThunk<
   }
 });
 
-interface UpdateTaskArgs {
-  id: number;
-  data: Partial<Task>;
-}
-
 export const updateTask = createAsyncThunk<
   Task,
-  UpdateTaskArgs,
+  IUpdateTaskArgs,
   { rejectValue: string }
 >('tasks/updateTask', async ({ id, data }, thunkAPI) => {
   try {
-    const response: AxiosResponse<Task> = await axios.patch(
-      `/tasks/${id}`,
-      data
-    );
+    const response: AxiosResponse<Task> = await axios.put(`/tasks/${id}`, data);
     return response.data;
   } catch (e) {
     if (axios.isAxiosError(e)) {

@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import { IoMdAdd } from 'react-icons/io';
-import { toast } from 'react-hot-toast';
 import { IList } from '../../types/types';
 import { AddListSchema } from '../../helpers/validation';
 
@@ -18,7 +17,7 @@ import { addList, fetchLists } from '../../redux/lists/operations';
 import { selectLists } from '../../redux/lists/selectors';
 import { isListExists } from '../../helpers/isListExists';
 import { IAddListForm } from '../../types/types';
-
+import { showToast } from '../../toast/toast';
 const initialValues = {
   listName: '',
 };
@@ -31,14 +30,8 @@ export const AddListForm: React.FC<IAddListForm> = ({ onClick }) => {
     { resetForm }: FormikHelpers<IList>
   ) => {
     if (isListExists(lists, values)) {
-      toast.error(`Error! 😲 ${values.listName} is already in contacts`, {
-        duration: 2000,
-        style: {
-          borderRadius: '10px',
-          background: '#333',
-          color: '#fff',
-        },
-      });
+      showToast('error', `Error! 😲 ${values.listName} is already in list`);
+
       return;
     }
     dispatch(addList(values));

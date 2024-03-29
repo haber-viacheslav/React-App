@@ -4,9 +4,10 @@ import {
   StyledCloseButton,
   StyledLightButton,
   TransparentWithoutBorderButton,
-  StyledDottedButton,
+  StyledDashedButton,
   StyledDarkButton,
   StyledMobileMenuButton,
+  StyledButtonText,
 } from './Button.styled';
 
 export const Button: React.FC<IButtonProps> = ({
@@ -27,8 +28,8 @@ export const Button: React.FC<IButtonProps> = ({
     case ButtonStyle.WithoutBorder:
       ButtonStyled = TransparentWithoutBorderButton;
       break;
-    case ButtonStyle.Dotted:
-      ButtonStyled = StyledDottedButton;
+    case ButtonStyle.Dashed:
+      ButtonStyled = StyledDashedButton;
       break;
     case ButtonStyle.Mobile:
       ButtonStyled = StyledMobileMenuButton;
@@ -52,7 +53,7 @@ export const Button: React.FC<IButtonProps> = ({
         />
       )}
 
-      {text && <span>{text}</span>}
+      {text && <StyledButtonText>{text}</StyledButtonText>}
     </ButtonStyled>
   );
 };
