@@ -6,7 +6,7 @@ import { StyledHeader, StyledHeaderLogo, FlexContainer } from './Header.styled';
 import { AppBar } from '../../../components/AppBar/AppBar';
 import { IHeaderProps } from '../../../types/types';
 import { useResize } from '../../../hooks/useResize';
-import { Modal } from '../../../components/Modal/Modal';
+import { Modal } from '../../Modals/Modal';
 import { Button } from '../buttons/Button';
 import { useAppDispatch } from '../../../redux/hook/hook';
 import { ButtonStyle, ModalVariant } from '../../../types/types';

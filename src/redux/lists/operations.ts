@@ -72,7 +72,7 @@ export const updateList = createAsyncThunk<
   { rejectValue: string }
 >('lists/updateList', async ({ id, data }, thunkAPI) => {
   try {
-    const response: AxiosResponse<List> = await axios.patch(
+    const response: AxiosResponse<List> = await axios.put(
       `/task_lists/${id}`,
       data
     );

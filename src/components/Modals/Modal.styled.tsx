@@ -13,11 +13,23 @@ export const Overlay = styled.div`
   z-index: 1000;
   background-color: ${props => props.theme.colors.backdrop};
 `;
-interface StyledModalProps {
+
+export const ActionOverlay = styled(Overlay)`
+  z-index: 500;
+`;
+export const ActionModalBody = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: ${props => props.theme.colors.clearWhite};
+  position: absolute;
+  border-radius: 8px;
+`;
+interface IStyledModalProps {
   variant?: ModalVariant;
 }
 
-export const StyledModal = styled.div<StyledModalProps>`
+export const StyledModal = styled.div<IStyledModalProps>`
   background-color: ${props => props.theme.colors.clearWhite};
   position: absolute;
   ${({ variant }) => {
@@ -68,7 +80,7 @@ export const StyledModal = styled.div<StyledModalProps>`
     }
   }}
 `;
-export const ModalHeader = styled.div<StyledModalProps>`
+export const ModalHeader = styled.div<IStyledModalProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;

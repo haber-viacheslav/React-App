@@ -8,7 +8,7 @@ import { ModalVariant } from '../../types/types';
 import { useAppDispatch } from '../../redux/hook/hook';
 import { setVariantValue } from '../../redux/variant/variantSlice';
 import { StyledAppBar } from './AppBar.styled';
-import { Modal } from '../Modal/Modal';
+import { Modal } from '../Modals/Modal';
 export const AppBar: React.FC = () => {
   const dispatch = useAppDispatch();
 

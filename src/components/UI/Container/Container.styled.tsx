@@ -2,14 +2,15 @@ import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
   box-sizing: border-box;
+  width: 320px;
   margin: 0 auto;
   padding: 0 20px;
-  width: 100vw;
 
-  @media screen and (${props => props.theme.media.mToMd}) {
-    max-width: 90%;
+  @media screen and (${props => props.theme.media.sm}) {
+    width: 380px;
   }
-  @media screen and (${props => props.theme.media.mdToLg}) {
+  @media screen and (${props => props.theme.media.md}) {
+    width: 768px;
     padding: 0 30px;
   }
 
