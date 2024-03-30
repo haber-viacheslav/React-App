@@ -1,12 +1,12 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { tasksReducer } from './tasks/tasksSlice';
-import { variantReducer } from './variant/variantSlice';
+import { modalReducer } from './modal/modalSlice';
 import { listsReducer } from './lists/listsSlice';
 
 export const store = configureStore({
   reducer: {
     tasks: tasksReducer,
-    variant: variantReducer,
+    modal: modalReducer,
     lists: listsReducer,
   },
 });

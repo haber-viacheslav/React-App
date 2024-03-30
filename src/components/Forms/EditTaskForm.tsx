@@ -1,15 +1,10 @@
 import React from 'react';
 import 'react-datepicker/dist/react-datepicker.css';
 import { Formik, FormikHelpers } from 'formik';
-import { ITask } from '@/types/types';
+import { ITask } from '../../types/types';
 import { AddTaskSchema } from '../../helpers/validation';
-import radioOptions from '../../data/radio.json';
-import { StyledFormWrap } from './Forms.styled';
-import { FormikControl } from './FormControl';
-import { selectLists } from '../../redux/lists/selectors';
-import { addTask } from '../../redux/tasks/operations';
-import { useAppDispatch, useAppSelector } from '../../redux/hook/hook';
-import { FormButton } from '../UI/buttons/FormButton';
+// import radioOptions from '../../data/radio.json';
+// import { FormWrap } from './Forms.styled';
 
 const initialValues: ITask = {
   name: '',
@@ -19,12 +14,12 @@ const initialValues: ITask = {
   dueDate: new Date(),
 };
 
-export const AddTaskForm: React.FC = () => {
-  const dispatch = useAppDispatch();
-  const lists = useAppSelector(selectLists);
+export const EditTaskForm: React.FC = () => {
+  //   const dispatch = useAppDispatch();
+  //   const lists = useAppSelector(selectLists);
   const handleSubmit = (values: ITask, { resetForm }: FormikHelpers<ITask>) => {
     console.log(values);
-    dispatch(addTask(values));
+    // dispatch(addTask(values));
     resetForm();
   };
 
@@ -34,8 +29,8 @@ export const AddTaskForm: React.FC = () => {
       validationSchema={AddTaskSchema}
       onSubmit={handleSubmit}
     >
-      <StyledFormWrap>
-        <FormikControl control="input" label="Name" name="name" />
+      {/* <FormWrap>
+        <FormikControl control="input" type="text" label="Name" name="name" />
         <FormikControl
           control="textarea"
           label="Description"
@@ -54,8 +49,8 @@ export const AddTaskForm: React.FC = () => {
           options={radioOptions}
         />
         <FormikControl control="date" label="Due Date" name="dueDate" />
-        <FormButton>Add</FormButton>
-      </StyledFormWrap>
+        <button type="submit">Submit</button>
+      </FormWrap> */}
     </Formik>
   );
 };

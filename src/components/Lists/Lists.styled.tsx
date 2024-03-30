@@ -6,7 +6,7 @@ export const StyledLists = styled.ul`
   align-items: flex-start;
   flex-wrap: nowrap;
   overflow-x: hidden;
-  white-space: nowrap;
+  white-space: normal;
 
   @media screen and (${props => props.theme.media.md}) {
     font-size: 16px;

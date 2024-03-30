@@ -45,6 +45,8 @@ const listsSlice = createSlice({
           item => item.id === action.payload.id
         );
         state.items.splice(index, 1);
+        state.isLoading = false;
+        state.error = null;
       })
       .addMatcher(
         (action: Action<string>) =>

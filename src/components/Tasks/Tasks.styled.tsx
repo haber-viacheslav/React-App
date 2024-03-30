@@ -4,7 +4,6 @@ export const StyledTasks = styled.ul`
   flex-direction: column;
   display: flex;
   gap: 20px;
-  align-items: center;
 `;
 
 export const StyledTaskItem = styled.div`

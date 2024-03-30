@@ -13,7 +13,7 @@ import { TaskDetailsModalContent } from '../ModalContent/TaskDetails';
 import { AddListForm } from '../Forms/AddListForm';
 import { AddTaskForm } from '../Forms/AddTaskForm';
 import { useAppSelector } from '../../redux/hook/hook';
-import { selectVariant } from '../../redux/variant/selectors';
+import { selectVariant } from '../../redux/modal/selectors';
 import { AppBar } from '../AppBar/AppBar';
 const modalRoot = document.querySelector('#modal-root');
 
@@ -38,7 +38,7 @@ export const Modal: React.FC<IModalProps> = ({ onClick, children }) => {
       modalContent = <AppBar />;
       break;
     default:
-      modalContent = <TaskDetailsModalContent />;
+      modalContent = <AddTaskForm />;
       break;
   }
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import { StyledSelect, StyledOption } from './Select.styled';
-import { ISelectProps } from '../../types/types';
-import { selectLists } from '../../redux/lists/selectors';
-import { updateTask } from '../../redux/tasks/operations';
-import { useAppDispatch, useAppSelector } from '../../redux/hook/hook';
+import { ISelectProps } from '../../../types/types';
+import { selectLists } from '../../../redux/lists/selectors';
+import { updateTask } from '../../../redux/tasks/operations';
+import { useAppDispatch, useAppSelector } from '../../../redux/hook/hook';
 
 export const Select: React.FC<ISelectProps> = ({ task }) => {
   const { id } = task;

@@ -17,7 +17,7 @@ import {
 } from '../../redux/tasks/selectors';
 import { fetchLists } from '../../redux/lists/operations';
 import { fetchTasks } from '../../redux/tasks/operations';
-import { setVariantValue } from '../../redux/variant/variantSlice';
+import { setVariantAndOpen } from '../../redux/modal/modalSlice';
 import { Button } from '../UI/buttons/Button';
 import { ModalVariant } from '../../types/types';
 import { ButtonStyle } from '../../types/types';
@@ -34,7 +34,7 @@ export const Lists: React.FC = () => {
   //   const isTasksError = useAppSelector(selectTasksError);
 
   const handleSetVariant = (variant: ModalVariant): void => {
-    dispatch(setVariantValue(variant));
+    dispatch(setVariantAndOpen(variant));
   };
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault();

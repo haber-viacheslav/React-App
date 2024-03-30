@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { RefObject, ReactNode } from 'react';
 import { IconType } from 'react-icons/lib';
 
 export type ToastVariant = 'success' | 'error' | 'loading';
@@ -32,19 +32,23 @@ export interface IHeaderProps {
 }
 
 export interface IButtonProps {
+  ref?: RefObject<HTMLButtonElement>;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
   icon?: IconType;
   text?: string;
   variant?: ButtonStyle;
 }
 
+export interface IStyledModalProps {
+  variant?: ModalVariant;
+}
+
 export interface ITask {
-  name: string;
-  status: string;
+  name?: string;
+  status?: string;
   priority?: 'low' | 'medium' | 'high' | null;
   description?: string;
-  dueDate: Date;
-  statusId: number;
+  dueDate?: Date;
 }
 
 export interface IList {
@@ -74,7 +78,7 @@ export interface IAddListForm {
   onClick: () => void;
 }
 
-//Redux
+//interfaces
 
 export interface IUpdateTaskArgs {
   id: number;
@@ -87,4 +91,51 @@ export interface ISelectProps {
 
 export interface ITaskItemProps {
   task: Task;
+}
+
+// Formik interfaces
+
+export interface IOption {
+  key: string;
+  value: string;
+  bg: string;
+  border: string;
+}
+
+export interface IRadioButtonsProps {
+  label: string;
+  name: string;
+  options: IOption[];
+}
+
+export interface IFormikSelectProps {
+  label: string;
+  name: string;
+  options: List[];
+}
+
+export interface ITextErrorProps {
+  children: ReactNode;
+}
+
+export interface ITextAreaProps {
+  label: string;
+  name: string;
+  [key: string]: any;
+}
+
+export interface IInputProps {
+  label: string;
+  name: string;
+  type: string;
+}
+
+export interface IDatePickerProps {
+  label: string;
+  name: string;
+}
+
+export interface IStyledRadioProps {
+  bg?: string;
+  border?: string;
 }

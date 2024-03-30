@@ -1,0 +1,20 @@
+[
+  {
+    "key": "Low",
+    "value": "low",
+    "bg": "lightGreen",
+    "border": "greenBorder"
+  },
+  {
+    "key": "Medium",
+    "value": "medium",
+    "bg": "lightBlue",
+    "border": "blueBorder"
+  },
+  {
+    "key": "High",
+    "value": "high",
+    "bg": "lightCoral",
+    "border": "coralBorder"
+  }
+]

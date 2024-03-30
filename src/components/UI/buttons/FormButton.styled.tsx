@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 export const StyledFormButton = styled.button`
   display: inline-block;
+  align-self: center;
   font-family: inherit;
+  width: 60px;
   font-weight: ${props => props.theme.fontWeights.medium};
   font-size: 16px;
   border: 2px solid ${props => props.theme.colors.light};
-  border-radius: 2px;
+  border-radius: 8px;
   background-color: ${props => props.theme.colors.clearWhite};
   color: ${props => props.theme.colors.darkGrey};
   padding: 4px 8px;

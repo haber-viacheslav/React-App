@@ -14,7 +14,7 @@ import {
 } from './Tasks.styled';
 import { ActionMenu } from '../Modals/ActionMenu';
 import { Button } from '../UI/buttons/Button';
-import { Select } from '../Select/Select';
+import { Select } from '../Forms/Select/Select';
 import { formatDate } from '../../helpers/formatDate';
 import { Task, ButtonStyle } from '../../types/types';
 import { useAppDispatch } from '../../redux/hook/hook';
@@ -36,41 +36,42 @@ export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
       if (!buttonRef.current) {
         return;
       }
-      const buttonRect = buttonRef.current
-        ? buttonRef.current.getBoundingClientRect()
-        : null;
-      if (buttonRect) {
-        setModalPosition({ x: buttonRect.left, y: buttonRect.top });
-      }
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      setModalPosition({ x: buttonRect.left, y: buttonRect.top });
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('click', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('click', handleResize);
     };
   }, []);
   return (
     <>
-      <StyledTaskItem>
-        <StyledTaskHeader ref={buttonRef}>
-          <StyledTaskTitle>{name}</StyledTaskTitle>
-          <Button
-            icon={IoEllipsisVertical}
-            variant={ButtonStyle.Mobile}
-            onClick={handleToggleIsOpen}
-          />
-        </StyledTaskHeader>
-        <StyledTaskDescription>{description}</StyledTaskDescription>
-        <TaskFooter>
-          <StyledTaskDueDate>
-            <FiCalendar />
-            {formatDate(dueDate)}
-          </StyledTaskDueDate>
-          <StyledTaskPriority>{priority}</StyledTaskPriority>
-          <Select task={task} />
-        </TaskFooter>
-      </StyledTaskItem>
+      {task && (
+        <StyledTaskItem>
+          <StyledTaskHeader>
+            <StyledTaskTitle>{name}</StyledTaskTitle>
+            <div ref={buttonRef}>
+              <Button
+                icon={IoEllipsisVertical}
+                variant={ButtonStyle.Mobile}
+                onClick={handleToggleIsOpen}
+              />
+            </div>
+          </StyledTaskHeader>
+
+          <TaskFooter>
+            <StyledTaskDescription>{description}</StyledTaskDescription>
+            <StyledTaskDueDate>
+              <FiCalendar />
+              {formatDate(dueDate)}
+            </StyledTaskDueDate>
+            <StyledTaskPriority>{priority}</StyledTaskPriority>
+            <Select task={task} />
+          </TaskFooter>
+        </StyledTaskItem>
+      )}
       {isOpen && (
         <ActionMenu position={modalPosition} onClick={handleToggleIsOpen}>
           <Button
