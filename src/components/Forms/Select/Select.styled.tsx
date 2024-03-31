@@ -4,6 +4,8 @@ export const StyledSelect = styled.select`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 14px;
+  font-weight: ${props => props.theme.fontWeights.semibold};
   width: 310px;
   height: 30px;
   border-radius: 4px;
@@ -16,6 +18,7 @@ export const StyledSelect = styled.select`
 `;
 
 export const StyledOption = styled.option`
-  display: block;
-  padding: 40px;
+  font-size: 14px;
+  color: ${props => props.theme.colors.lightGrey};
+  font-weight: ${props => props.theme.fontWeights.semibold};
 `;

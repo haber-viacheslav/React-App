@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import { Form, Field, ErrorMessage } from 'formik';
 import { IStyledRadioProps } from '@/types/types';
-
+import DateView from 'react-datepicker';
 export const FormWrap = styled(Form)`
   padding: 20px;
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 6px;
 `;
 export const StyledFormWrap = styled(Form)`
   padding: 20px;
@@ -17,19 +17,21 @@ export const StyledFormWrap = styled(Form)`
   gap: 10px;
 `;
 
-export const FormInputWrp = styled.label`
+export const FormInputLabel = styled.label`
+  font-size: 16px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+`;
+
+export const InputWrp = styled.div`
   position: relative;
   display: flex;
   flex-direction: column;
+  padding: 10px 0;
   gap: 4px;
 `;
 
-export const FormLabel = styled.span`
-  font-size: 16px;
-`;
-
 export const FormInput = styled(Field)`
-  font-size: 18px;
+  font-size: 16px;
   padding: 4px 10px;
   background-color: transparent;
   border: none;
@@ -46,13 +48,13 @@ export const FormInput = styled(Field)`
 
 export const FormErrorMessage = styled(ErrorMessage)`
   position: absolute;
-  transform: translateY(60px);
+
   color: ${({ theme }) => theme.colors.red};
 `;
 
 export const FormButton = styled.button`
   display: inline-flex;
-  align-self: flex-end;
+  align-self: center;
   width: 30px;
   height: 30px;
   justify-content: center;
@@ -60,11 +62,12 @@ export const FormButton = styled.button`
   border: none;
   color: #0c0404;
   border-radius: 100%;
-  transition: 400ms box-shadow ease-out;
+  transition: 400ms box-shadow ease-out, 300ms scale ease-in-out;
   cursor: pointer;
   &:hover,
   &:focus {
     box-shadow: ${({ theme }) => theme.shadows.mainShadow};
+    scale: 1.05;
   }
 `;
 
@@ -139,10 +142,100 @@ export const RadioOptionTitle = styled.label`
   cursor: pointer;
 `;
 
-export const RadioLabelTitle = styled.p`
+export const StyledTitle = styled.p`
   font-size: 18px;
   font-weight: ${({ theme }) => theme.fontWeights.bold};
   display: flex;
   color: ${({ theme }) => theme.colors.midGrey};
   cursor: pointer;
+`;
+
+export const SelectContainer = styled.div`
+  padding: 14px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+export const StyledError = styled.span`
+  position: absolute;
+  bottom: -12px;
+  font-size: 14px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  color: ${({ theme }) => theme.colors.red};
+`;
+export const StyledLabelTitle = styled.label`
+  font-size: 18px;
+  font-weight: ${({ theme }) => theme.fontWeights.bold};
+  display: flex;
+  color: ${({ theme }) => theme.colors.midGrey};
+  cursor: pointer;
+`;
+export const StyledDateContainer = styled(FormInput)`
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const StyledDate = styled(DateView)`
+  display: flex;
+  align-items: baseline;
+  gap: 20px;
+  width: 120px;
+  font-size: 14px;
+  font-weight: ${({ theme }) => theme.fontWeights.semibold};
+  padding: 4px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-radius: 2px;
+  outline: none;
+  color: ${({ theme }) => theme.colors.mainGrey};
+  transition: 400ms box-shadow ease-in-out;
+  &:focus,
+  &:active {
+    box-shadow: ${({ theme }) => theme.shadows.mainShadow};
+  }
+`;
+
+export const FormTextField = styled(Field)`
+  font-size: 16px;
+  padding: 4px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid ${({ theme }) => theme.colors.lightGrey};
+  border-radius: 2px;
+  outline: none;
+  color: ${({ theme }) => theme.colors.mainGrey};
+  transition: 400ms box-shadow ease-in-out;
+  height: 46px;
+  resize: none;
+  &:focus,
+  &:active {
+    box-shadow: ${({ theme }) => theme.shadows.mainShadow};
+  }
+`;
+
+export const StyledFormSelect = styled.select`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  font-weight: ${props => props.theme.fontWeights.semibold};
+  width: 310px;
+  height: 30px;
+  border-radius: 4px;
+  border: none;
+  outline: none;
+  background-color: ${props => props.theme.colors.light};
+  @media screen and (${props => props.theme.media.lg}) {
+    width: 270px;
+  }
+`;
+
+export const StyledSelectOption = styled.option`
+  font-size: 14px;
+  color: ${props => props.theme.colors.lightGrey};
+  font-weight: ${props => props.theme.fontWeights.semibold};
 `;

@@ -33,7 +33,7 @@ export const ActionMenu: React.FC<ModalProps> = ({
       onClick();
     }
   };
-  console.log(position);
+
   if (!modalRoot) return null;
 
   return createPortal(

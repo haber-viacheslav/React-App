@@ -1,8 +1,14 @@
 import React from 'react';
-import DateView from 'react-datepicker';
-import { Field, ErrorMessage, FieldProps } from 'formik';
+import { ErrorMessage, FieldProps } from 'formik';
+import { FiCalendar } from 'react-icons/fi';
 import { TextError } from './TextError';
 import { IDatePickerProps } from '../../types/types';
+import {
+  SelectContainer,
+  StyledDate,
+  StyledDateContainer,
+  StyledLabelTitle,
+} from './Forms.styled';
 import 'react-datepicker/dist/react-datepicker.css';
 
 export const DatePicker: React.FC<IDatePickerProps> = ({
@@ -10,16 +16,17 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
   name,
   ...rest
 }) => {
-  console.log(TextError);
   return (
-    <div>
-      <label htmlFor={name}>{label}</label>
-      <Field name={name}>
+    <SelectContainer>
+      <StyledLabelTitle htmlFor={name}>{label}</StyledLabelTitle>
+      <StyledDateContainer name={name}>
         {({ form, field }: FieldProps) => {
           const { setFieldValue } = form;
           const { value } = field;
           return (
-            <DateView
+            <StyledDate
+              showIcon
+              icon={<FiCalendar />}
               id={name}
               {...field}
               {...rest}
@@ -28,11 +35,11 @@ export const DatePicker: React.FC<IDatePickerProps> = ({
             />
           );
         }}
-      </Field>
+      </StyledDateContainer>
       <ErrorMessage
         render={(msg: string) => <TextError>{msg}</TextError>}
         name={name}
       />
-    </div>
+    </SelectContainer>
   );
 };

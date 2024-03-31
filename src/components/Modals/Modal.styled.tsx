@@ -15,9 +15,13 @@ export const Overlay = styled.div`
 `;
 
 export const ActionOverlay = styled(Overlay)`
+  background-color: ${props => props.theme.colors.transparent};
   z-index: 500;
 `;
 export const ActionModalBody = styled.div`
+  border: 1px solid ${props => props.theme.colors.lightGrey};
+  padding: 4px;
+  z-index: 500;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -41,6 +45,19 @@ export const StyledModal = styled.div<IStyledModalProps>`
           width: 80%;
           height: 80%;
           border-radius: 8px;
+            @media screen and (min-width: 380px) {
+          width: 320px;
+          }
+            @media screen and (min-width: 480px) {
+          width: 440px;
+          }
+            @media screen and (min-width: 768px) {
+          width: 740px;
+          }
+            @media screen and (min-width: 1280px) {
+          width: 920px;
+          }
+          
         `;
       case ModalVariant.TaskActivity:
         return `
@@ -66,6 +83,14 @@ export const StyledModal = styled.div<IStyledModalProps>`
           transform: translateX(-50%);
           width: 340px;
           border-radius: 8px;
+        `;
+      case ModalVariant.AddTask:
+        return `
+          top: 10%;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 340px;
+          border-radius: 30px;
         `;
       default:
         return `

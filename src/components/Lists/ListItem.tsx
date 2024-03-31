@@ -14,7 +14,12 @@ import { RiDeleteBin5Line } from 'react-icons/ri';
 import { ActionMenu } from '../Modals/ActionMenu';
 import { useAppDispatch } from '../../redux/hook/hook';
 import { deleteList } from '../../redux/lists/operations';
-import { setVariantAndOpen } from '../../redux/modal/modalSlice';
+import {
+  setVariantAndOpen,
+  setCurrentList,
+} from '../../redux/modal/modalSlice';
+import { showToast } from '../../toast/toast';
+
 export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
   list,
   tasksCount,
@@ -28,11 +33,20 @@ export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
 
   const dispatch = useAppDispatch();
   const handleDeleteList = () => {
+    if (tasksCount) {
+      showToast('error', 'Move your tasks to another list.');
+      return;
+    }
     dispatch(deleteList(id));
     handleToggleIsOpen();
   };
-  const handleSetVariant = (variant: ModalVariant): void => {
-    dispatch(setVariantAndOpen(variant));
+  const handleEditList = (variant: ModalVariant): void => {
+    dispatch(setVariantAndOpen({ variant }));
+    dispatch(setCurrentList({ list }));
+  };
+
+  const handleAddTask = (variant: ModalVariant): void => {
+    dispatch(setVariantAndOpen({ variant }));
   };
   useEffect(() => {
     const handleResize = () => {
@@ -40,7 +54,7 @@ export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
         return;
       }
       const buttonRect = buttonRef.current.getBoundingClientRect();
-      setModalPosition({ x: buttonRect.left, y: buttonRect.top });
+      setModalPosition({ x: buttonRect.left - 190, y: buttonRect.top });
     };
 
     window.addEventListener('click', handleResize);
@@ -68,12 +82,13 @@ export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
         <ActionMenu position={modalPosition} onClick={handleToggleIsOpen}>
           <Button
             icon={FiEdit}
-            onClick={() => handleSetVariant(ModalVariant.AddList)}
+            onClick={() => handleEditList(ModalVariant.UpdateList)}
             variant={ButtonStyle.WithoutBorder}
             text="Edit"
           />
           <Button
             icon={FiPlus}
+            onClick={() => handleAddTask(ModalVariant.AddTask)}
             variant={ButtonStyle.WithoutBorder}
             text="Add new card"
           />

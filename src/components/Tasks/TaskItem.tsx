@@ -16,9 +16,14 @@ import { ActionMenu } from '../Modals/ActionMenu';
 import { Button } from '../UI/buttons/Button';
 import { Select } from '../Forms/Select/Select';
 import { formatDate } from '../../helpers/formatDate';
-import { Task, ButtonStyle } from '../../types/types';
+import { Task, ButtonStyle, ModalVariant } from '../../types/types';
 import { useAppDispatch } from '../../redux/hook/hook';
-import { deleteTask } from '../../redux/tasks/operations';
+import { deleteTask, fetchTasks } from '../../redux/tasks/operations';
+import {
+  setVariantAndOpen,
+  setCurrentTask,
+} from '../../redux/modal/modalSlice';
+import { capitalizeFirstLetter } from '../../helpers/capitalizeLetter';
 export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
   const buttonRef = useRef<HTMLDivElement>(null);
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
@@ -27,9 +32,14 @@ export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleIsOpen = () => setIsOpen(!isOpen);
   const dispatch = useAppDispatch();
-  const handleDeleteTask = () => {
-    dispatch(deleteTask(id));
+  const handleDeleteTask = async () => {
+    await dispatch(deleteTask(id));
+    await dispatch(fetchTasks());
     handleToggleIsOpen();
+  };
+  const handleEditTask = (variant: ModalVariant): void => {
+    dispatch(setVariantAndOpen({ variant }));
+    dispatch(setCurrentTask({ task }));
   };
   useEffect(() => {
     const handleResize = () => {
@@ -37,7 +47,7 @@ export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
         return;
       }
       const buttonRect = buttonRef.current.getBoundingClientRect();
-      setModalPosition({ x: buttonRect.left, y: buttonRect.top });
+      setModalPosition({ x: buttonRect.left - 190, y: buttonRect.top });
     };
 
     window.addEventListener('click', handleResize);
@@ -67,7 +77,9 @@ export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
               <FiCalendar />
               {formatDate(dueDate)}
             </StyledTaskDueDate>
-            <StyledTaskPriority>{priority}</StyledTaskPriority>
+            <StyledTaskPriority priority={priority}>
+              {capitalizeFirstLetter(priority)}
+            </StyledTaskPriority>
             <Select task={task} />
           </TaskFooter>
         </StyledTaskItem>
@@ -75,6 +87,7 @@ export const TaskItem: React.FC<{ task: Task }> = ({ task }) => {
       {isOpen && (
         <ActionMenu position={modalPosition} onClick={handleToggleIsOpen}>
           <Button
+            onClick={() => handleEditTask(ModalVariant.TaskDetails)}
             icon={FiEdit}
             variant={ButtonStyle.WithoutBorder}
             text="Edit"

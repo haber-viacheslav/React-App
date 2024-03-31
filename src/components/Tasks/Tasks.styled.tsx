@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-
+import { IStyledPriorityProps } from '../../types/types';
 export const StyledTasks = styled.ul`
   flex-direction: column;
   display: flex;
@@ -46,15 +46,36 @@ export const StyledTaskDueDate = styled.div`
   gap: 10px;
   font-size: 16px;
   color: ${props => props.theme.colors.lightGrey};
-  font-weight: ${props => props.theme.fontWeights.semiBold};
+  font-weight: ${props => props.theme.fontWeights.semibold};
 `;
 
-export const StyledTaskPriority = styled.div`
+export const StyledTaskPriority = styled.div<IStyledPriorityProps>`
+  position: relative;
   max-width: 100px;
-  padding: 0 10px;
-  display: flex;
+  padding: 2px 24px;
   border-radius: 10px;
   font-size: 16px;
-  color: ${props => props.theme.colors.lightGrey};
-  background-color: ${props => props.theme.colors.light};
+  font-weight: ${props => props.theme.fontWeights.semibold};
+  color: ${props => props.theme.colors.clearWhite};
+  background-color: ${props => {
+    return props.priority
+      ? props.theme.colors.badgeBg[props.priority]
+      : props.theme.colors.lightGrey;
+  }};
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: ${props => {
+      return props.priority
+        ? props.theme.colors.badge[props.priority]
+        : props.theme.colors.lightGrey;
+    }};
+    transform: translate(-50%, -50%);
+    visibility: visible;
+  }
 `;

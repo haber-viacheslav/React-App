@@ -10,6 +10,16 @@ export const theme = Object.freeze({
     black: 900,
   },
   colors: {
+    badgeBg: {
+      low: '#00800080',
+      medium: '#5656e480',
+      high: '#cf175480',
+    },
+    badge: {
+      low: '#008000',
+      medium: '#5656e4',
+      high: '#cf1754',
+    },
     backdrop: '#42424279',
     red: '#CF0404',
     darkGrey: '#262626',
@@ -45,6 +55,6 @@ export const theme = Object.freeze({
     smToM: '(min-width: 360px) and (max-width: 479px)',
     mToMd: '(min-width: 480px) and (max-width: 767px)',
     mdToLg: '(min-width: 768px) and (max-width: 1280px)',
-    smToLg: '(min-width: 360px) and (max-width: 1280  px)',
+    smToLg: '(min-width: 360px) and (max-width: 1280px)',
   },
 });

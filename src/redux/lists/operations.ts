@@ -1,6 +1,6 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { List, IList } from '../../types/types';
+import { List, IList, IUpdateListArgs } from '../../types/types';
 axios.defaults.baseURL = 'https://task-board-api-v7h2.onrender.com/api';
 
 export const fetchLists = createAsyncThunk<
@@ -61,14 +61,9 @@ export const deleteList = createAsyncThunk<
   }
 });
 
-interface UpdateListArgs {
-  id: number;
-  data: Partial<List>;
-}
-
 export const updateList = createAsyncThunk<
   List,
-  UpdateListArgs,
+  IUpdateListArgs,
   { rejectValue: string }
 >('lists/updateList', async ({ id, data }, thunkAPI) => {
   try {

@@ -44,13 +44,19 @@ export interface IStyledModalProps {
 }
 
 export interface ITask {
-  name?: string;
-  status?: string;
-  priority?: 'low' | 'medium' | 'high' | null;
+  name: string;
+  status: string;
+  priority: 'low' | 'medium' | 'high' | null;
   description?: string;
   dueDate?: Date;
 }
-
+export interface IUpdateTask {
+  name?: string;
+  status?: string;
+  priority?: 'low' | 'medium' | 'high';
+  description?: string;
+  dueDate?: Date;
+}
 export interface IList {
   listName: string;
 }
@@ -77,9 +83,13 @@ export interface List {
 export interface IAddListForm {
   onClick: () => void;
 }
-
-//interfaces
-
+export interface IUpdateListForm {
+  onClick: () => void;
+}
+export interface IUpdateListArgs {
+  id: number;
+  data: Partial<List>;
+}
 export interface IUpdateTaskArgs {
   id: number;
   data: Partial<Task>;
@@ -138,4 +148,8 @@ export interface IDatePickerProps {
 export interface IStyledRadioProps {
   bg?: string;
   border?: string;
+}
+
+export interface IStyledPriorityProps {
+  priority?: string;
 }

@@ -34,7 +34,7 @@ export const Lists: React.FC = () => {
   //   const isTasksError = useAppSelector(selectTasksError);
 
   const handleSetVariant = (variant: ModalVariant): void => {
-    dispatch(setVariantAndOpen(variant));
+    dispatch(setVariantAndOpen({ variant }));
   };
   const handleWheel = useCallback((e: WheelEvent) => {
     e.preventDefault();
@@ -66,6 +66,10 @@ export const Lists: React.FC = () => {
     dispatch(fetchLists());
     dispatch(fetchTasks());
   }, [dispatch]);
+
+  useEffect(() => {
+    dispatch(fetchTasks());
+  }, []);
   return (
     <>
       {lists && (

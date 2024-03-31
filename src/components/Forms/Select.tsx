@@ -1,7 +1,12 @@
 import React from 'react';
-import { Field, ErrorMessage } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import { TextError } from './TextError';
 import { IFormikSelectProps } from '../../types/types';
+import {
+  SelectContainer,
+  StyledLabelTitle,
+  StyledSelectOption,
+} from './Forms.styled';
 export const Select: React.FC<IFormikSelectProps> = ({
   label,
   name,
@@ -9,19 +14,28 @@ export const Select: React.FC<IFormikSelectProps> = ({
   ...rest
 }) => {
   return (
-    <div className="form-control">
-      <label htmlFor={name}>{label}</label>
-      <Field as="select" id={name} name={name} {...rest}>
+    <SelectContainer>
+      <StyledLabelTitle htmlFor={name}>{label}</StyledLabelTitle>
+      <Field
+        className="form-select"
+        as="select"
+        id={name}
+        name={name}
+        {...rest}
+      >
+        <StyledSelectOption key="empty" value="">
+          Change...
+        </StyledSelectOption>
         {options.map(option => (
-          <option key={option.id} value={option.id}>
+          <StyledSelectOption key={option.id} value={option.id}>
             {option.listName}
-          </option>
+          </StyledSelectOption>
         ))}
       </Field>
       <ErrorMessage
         name={name}
         render={(msg: string) => <TextError>{msg}</TextError>}
       />
-    </div>
+    </SelectContainer>
   );
 };

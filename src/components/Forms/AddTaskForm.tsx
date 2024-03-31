@@ -10,7 +10,7 @@ import { selectLists } from '../../redux/lists/selectors';
 import { addTask } from '../../redux/tasks/operations';
 import { useAppDispatch, useAppSelector } from '../../redux/hook/hook';
 import { FormButton } from '../UI/buttons/FormButton';
-
+import { setModalClose } from '../../redux/modal/modalSlice';
 const initialValues: ITask = {
   name: '',
   status: '',
@@ -22,10 +22,26 @@ const initialValues: ITask = {
 export const AddTaskForm: React.FC = () => {
   const dispatch = useAppDispatch();
   const lists = useAppSelector(selectLists);
-  const handleSubmit = (values: ITask, { resetForm }: FormikHelpers<ITask>) => {
+  const handleSubmit = async (
+    values: ITask,
+    { resetForm }: FormikHelpers<ITask>
+  ) => {
     console.log(values);
-    dispatch(addTask(values));
-    resetForm();
+    console.log(lists);
+    if (typeof values.status !== 'undefined' && lists.length > 0) {
+      const nameOfStatus = lists.find(list => list.id === +values.status);
+      if (nameOfStatus) {
+        const data = {
+          ...values,
+          status: nameOfStatus.listName,
+          statusId: parseInt(values.status),
+        };
+        console.log(data);
+        await dispatch(addTask(data));
+        dispatch(setModalClose(false));
+        resetForm();
+      }
+    }
   };
 
   return (

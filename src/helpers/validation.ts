@@ -1,5 +1,5 @@
 import { string, object, date, ObjectSchema } from 'yup';
-import { ITask } from '@/types/types';
+import { ITask, IUpdateTask } from '../types/types';
 export const AddListSchema = object().shape({
   listName: string().trim().strict().required(),
 });
@@ -17,7 +17,7 @@ export const AddTaskSchema: ObjectSchema<ITask> = object({
     .required(),
 });
 
-export const EditTaskSchema: ObjectSchema<ITask> = object({
+export const EditTaskSchema: ObjectSchema<IUpdateTask> = object({
   name: string().trim().strict(),
   status: string().trim().strict(),
   priority: string<'low' | 'medium' | 'high'>(),
