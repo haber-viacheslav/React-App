@@ -12,14 +12,14 @@ import { Lists } from './components/Lists/Lists';
 import { Toaster } from 'react-hot-toast';
 import { useAppDispatch, useAppSelector } from './redux/hook/hook';
 import { selectIsOpen } from './redux/modal/selectors';
-import { setVariantAndClose } from './redux/modal/modalSlice';
+import { setModalClose } from './redux/modal/modalSlice';
 
 export function App() {
   const dispatch = useAppDispatch();
   const isOpen = useAppSelector(selectIsOpen);
 
   const handleToggleIsOpen = (): void => {
-    dispatch(setVariantAndClose({ isOpen: false }));
+    dispatch(setModalClose({ isOpen: false }));
   };
   return (
     <ThemeProvider theme={theme}>

@@ -15,10 +15,11 @@ export const StyledDarkButton = styled.button`
   padding: 10px 20px;
   max-height: 44px;
   transition: 400ms background-color ease-in-out, 400ms box-shadow ease-in-out,
-    400ms color ease-in-out;
+    400ms color ease-in-out, 400ms scale ease-in-out;
   cursor: pointer;
   &:hover,
   &:focus {
+    scale: 1.05;
     background-color: ${props => props.theme.colors.midGrey};
     box-shadow: ${props => props.theme.shadows.mainShadow};
   }
@@ -56,8 +57,14 @@ export const StyledDashedButton = styled.button`
   padding: 8px 0px;
   border: 1px dashed ${props => props.theme.colors.lightGrey};
   background-color: ${props => props.theme.colors.clearWhite};
+  transition: 400ms scale ease-in-out;
+  cursor: pointer;
   @media screen and (${props => props.theme.media.lg}) {
     width: 295px;
+  }
+  &:hover,
+  &:focus {
+    scale: 1.02;
   }
 `;
 

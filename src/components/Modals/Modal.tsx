@@ -12,9 +12,11 @@ import { TaskActivityModalContent } from '../ModalContent/TaskActivity';
 import { TaskDetailsModalContent } from '../ModalContent/TaskDetails';
 import { AddListForm } from '../Forms/AddListForm';
 import { AddTaskForm } from '../Forms/AddTaskForm';
+import { AppBar } from '../AppBar/AppBar';
+import { EditListForm } from '../Forms/EditListForm';
 import { useAppSelector } from '../../redux/hook/hook';
 import { selectVariant } from '../../redux/modal/selectors';
-import { AppBar } from '../AppBar/AppBar';
+
 const modalRoot = document.querySelector('#modal-root');
 
 export const Modal: React.FC<IModalProps> = ({ onClick, children }) => {
@@ -33,6 +35,9 @@ export const Modal: React.FC<IModalProps> = ({ onClick, children }) => {
       break;
     case ModalVariant.AddTask:
       modalContent = <AddTaskForm />;
+      break;
+    case ModalVariant.UpdateList:
+      modalContent = <EditListForm onClick={onClick} />;
       break;
     case ModalVariant.MobileMenu:
       modalContent = <AppBar />;

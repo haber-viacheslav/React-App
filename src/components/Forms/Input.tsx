@@ -1,7 +1,12 @@
 import React from 'react';
 import { TextError } from './TextError';
 import { IInputProps } from '../../types/types';
-import { FormInputWrp, FormInput, FormErrorMessage } from './Forms.styled';
+import {
+  InputWrp,
+  FormInput,
+  FormInputLabel,
+  FormErrorMessage,
+} from './Forms.styled';
 export const Input: React.FC<IInputProps> = ({
   label,
   name,
@@ -9,13 +14,13 @@ export const Input: React.FC<IInputProps> = ({
   ...rest
 }) => {
   return (
-    <FormInputWrp>
-      <FormInputWrp htmlFor={name}>{label}</FormInputWrp>
+    <InputWrp>
+      <FormInputLabel htmlFor={name}>{label}</FormInputLabel>
       <FormInput id={name} name={name} {...rest} />
       <FormErrorMessage
         name={name}
         render={msg => <TextError>{msg}</TextError>}
       />
-    </FormInputWrp>
+    </InputWrp>
   );
 };

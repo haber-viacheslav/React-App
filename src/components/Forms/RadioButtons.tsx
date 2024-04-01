@@ -6,7 +6,7 @@ import {
   RadioContainer,
   RadioInput,
   RadioLabel,
-  RadioLabelTitle,
+  StyledTitle,
   RadioOptionTitle,
 } from './Forms.styled';
 export const RadioButtons: React.FC<IRadioButtonsProps> = ({
@@ -16,8 +16,8 @@ export const RadioButtons: React.FC<IRadioButtonsProps> = ({
   ...rest
 }) => {
   return (
-    <>
-      <RadioLabelTitle>{label}</RadioLabelTitle>
+    <div>
+      <StyledTitle>{label}</StyledTitle>
       <RadioContainer>
         <Field name={name}>
           {({ field }: FieldProps) => {
@@ -47,6 +47,6 @@ export const RadioButtons: React.FC<IRadioButtonsProps> = ({
           render={(msg: string) => <TextError>{msg}</TextError>}
         />
       </RadioContainer>
-    </>
+    </div>
   );
 };

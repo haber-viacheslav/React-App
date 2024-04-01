@@ -1,7 +1,8 @@
 import React from 'react';
-import { Field, ErrorMessage } from 'formik';
+import { ErrorMessage, Field } from 'formik';
 import { TextError } from './TextError';
 import { ITextAreaProps } from '../../types/types';
+import { InputWrp, FormInputLabel } from './Forms.styled';
 
 export const TextArea: React.FC<ITextAreaProps> = ({
   label,
@@ -9,13 +10,19 @@ export const TextArea: React.FC<ITextAreaProps> = ({
   ...rest
 }) => {
   return (
-    <div className="form-control">
-      <label htmlFor={name}>{label}</label>
-      <Field as="textarea" id={name} name={name} {...rest} />
+    <InputWrp>
+      <FormInputLabel htmlFor={name}>{label}</FormInputLabel>
+      <Field
+        className="form-text"
+        as="textarea"
+        id={name}
+        name={name}
+        {...rest}
+      />
       <ErrorMessage
         name={name}
         render={(msg: string) => <TextError>{msg}</TextError>}
       />
-    </div>
+    </InputWrp>
   );
 };

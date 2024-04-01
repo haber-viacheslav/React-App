@@ -1,33 +1,28 @@
 import React, { useEffect } from 'react';
 import { Formik, FormikHelpers } from 'formik';
 import { IoMdAdd } from 'react-icons/io';
-import { IList } from '../../types/types';
-import { AddListSchema } from '../../helpers/validation';
+import { IList, IUpdateListForm } from '../../types/types';
+import { EditListSchema } from '../../helpers/validation';
 import { FormikControl } from './FormControl';
 import { FormWrap, FormButton } from './Forms.styled';
 import { useAppDispatch, useAppSelector } from '../../redux/hook/hook';
-import { addList, fetchLists } from '../../redux/lists/operations';
-import { selectLists } from '../../redux/lists/selectors';
-import { isListExists } from '../../helpers/isListExists';
-import { IAddListForm } from '../../types/types';
-import { showToast } from '../../toast/toast';
-const initialValues = {
-  listName: '',
-};
-export const AddListForm: React.FC<IAddListForm> = ({ onClick }) => {
+import { updateList, fetchLists } from '../../redux/lists/operations';
+import { selectCurrentList } from '../../redux/modal/selectors';
+
+export const EditListForm: React.FC<IUpdateListForm> = ({ onClick }) => {
   const dispatch = useAppDispatch();
-  const lists = useAppSelector(selectLists);
+  const list = useAppSelector(selectCurrentList);
+  console.log(list);
+  const { id, listName } = list;
+  const initialValues = {
+    listName,
+  };
 
   const handleSubmit = async (
     values: IList,
     { resetForm }: FormikHelpers<IList>
   ) => {
-    if (isListExists(lists, values)) {
-      showToast('error', `Error! 😲 ${values.listName} is already in list`);
-
-      return;
-    }
-    dispatch(addList(values));
+    dispatch(updateList({ id, data: values }));
     onClick();
     resetForm();
   };
@@ -38,7 +33,7 @@ export const AddListForm: React.FC<IAddListForm> = ({ onClick }) => {
   return (
     <Formik
       initialValues={initialValues}
-      validationSchema={AddListSchema}
+      validationSchema={EditListSchema}
       onSubmit={handleSubmit}
     >
       <FormWrap autoComplete="off">
