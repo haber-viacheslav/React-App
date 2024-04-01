@@ -11,7 +11,7 @@ export const FormButton: React.FC<FormButtonProps> = ({
   onClick,
 }) => {
   return (
-    <StyledFormButton type="button" onClick={onClick}>
+    <StyledFormButton type="submit" onClick={onClick}>
       {children}
     </StyledFormButton>
   );

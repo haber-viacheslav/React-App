@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { ModalVariant } from '../../types/types';
+import { ModalVariant, IStyledModalProps } from '../../types/types';
 export const Overlay = styled.div`
   position: fixed;
   top: 0;
@@ -24,10 +24,9 @@ export const ActionModalBody = styled.div`
   background-color: ${props => props.theme.colors.clearWhite};
   position: absolute;
   border-radius: 8px;
+  top: 10%;
+  left: 50%;
 `;
-interface IStyledModalProps {
-  variant?: ModalVariant;
-}
 
 export const StyledModal = styled.div<IStyledModalProps>`
   background-color: ${props => props.theme.colors.clearWhite};

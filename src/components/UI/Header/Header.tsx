@@ -10,14 +10,14 @@ import { Modal } from '../../Modals/Modal';
 import { Button } from '../buttons/Button';
 import { useAppDispatch } from '../../../redux/hook/hook';
 import { ButtonStyle, ModalVariant } from '../../../types/types';
-import { setVariantValue } from '../../../redux/variant/variantSlice';
+import { setVariantAndOpen } from '../../../redux/modal/modalSlice';
 export const Header: React.FC<IHeaderProps> = () => {
   const dispatch = useAppDispatch();
   const [isOpen, setIsOpen] = useState(false);
   const { isScreenMd } = useResize();
 
   const handleSetVariant = (variant: ModalVariant): void => {
-    dispatch(setVariantValue(variant));
+    dispatch(setVariantAndOpen(variant));
     setIsOpen(true);
   };
 
@@ -41,12 +41,12 @@ export const Header: React.FC<IHeaderProps> = () => {
           )}
         </FlexContainer>
       </Container>
-
+      {/* 
       {isOpen && (
         <Modal onClick={handleToggleIsOpen}>
           <Button icon={AiOutlineClose} onClick={handleToggleIsOpen} />
         </Modal>
-      )}
+      )} */}
     </StyledHeader>
   );
 };

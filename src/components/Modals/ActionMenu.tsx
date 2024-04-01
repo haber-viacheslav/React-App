@@ -38,9 +38,15 @@ export const ActionMenu: React.FC<ModalProps> = ({
 
   return createPortal(
     <ActionOverlay onClick={handleBackdropClick}>
-      <ActionModalBody style={{ top: position.y, left: position.x }}>
-        {children}
-      </ActionModalBody>
+      {position.y && position.x ? (
+        <ActionModalBody
+          style={{ top: position.y + 20, left: position.x + 20 }}
+        >
+          {children}
+        </ActionModalBody>
+      ) : (
+        <ActionModalBody>{children}</ActionModalBody>
+      )}
     </ActionOverlay>,
     modalRoot
   );

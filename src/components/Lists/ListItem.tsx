@@ -11,63 +11,57 @@ import { IoEllipsisVertical } from 'react-icons/io5';
 import { FiPlus } from 'react-icons/fi';
 import { FiEdit } from 'react-icons/fi';
 import { RiDeleteBin5Line } from 'react-icons/ri';
-import { AiOutlineClose } from 'react-icons/ai';
 import { ActionMenu } from '../Modals/ActionMenu';
 import { useAppDispatch } from '../../redux/hook/hook';
 import { deleteList } from '../../redux/lists/operations';
-import { Modal } from '../Modals/Modal';
-import { setVariantValue } from '../../redux/variant/variantSlice';
+import { setVariantAndOpen } from '../../redux/modal/modalSlice';
 export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
   list,
   tasksCount,
 }) => {
   const { listName, id } = list;
   const buttonRef = useRef<HTMLDivElement>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [modalPosition, setModalPosition] = useState({ x: 0, y: 0 });
   const [isOpen, setIsOpen] = useState(false);
   const handleToggleIsOpen = () => setIsOpen(!isOpen);
-  const handleModalOpen = () => setIsModalOpen(!isOpen);
+
   const dispatch = useAppDispatch();
   const handleDeleteList = () => {
     dispatch(deleteList(id));
     handleToggleIsOpen();
   };
   const handleSetVariant = (variant: ModalVariant): void => {
-    dispatch(setVariantValue(variant));
-    setIsModalOpen(true);
+    dispatch(setVariantAndOpen(variant));
   };
   useEffect(() => {
     const handleResize = () => {
       if (!buttonRef.current) {
         return;
       }
-      const buttonRect = buttonRef.current
-        ? buttonRef.current.getBoundingClientRect()
-        : null;
-      if (buttonRect) {
-        setModalPosition({ x: buttonRect.left, y: buttonRect.top });
-      }
+      const buttonRect = buttonRef.current.getBoundingClientRect();
+      setModalPosition({ x: buttonRect.left, y: buttonRect.top });
     };
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('click', handleResize);
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('click', handleResize);
     };
   }, []);
-
   return (
     <>
       <StyledItem>
         <StyledListTitle>{listName}</StyledListTitle>
         <StyledContainer>
-          <StyledCounter ref={buttonRef}>{tasksCount}</StyledCounter>
-          <Button
-            icon={IoEllipsisVertical}
-            variant={ButtonStyle.Mobile}
-            onClick={handleToggleIsOpen}
-          />
+          <StyledCounter>{tasksCount}</StyledCounter>
+          <div ref={buttonRef}>
+            <Button
+              icon={IoEllipsisVertical}
+              variant={ButtonStyle.Mobile}
+              onClick={handleToggleIsOpen}
+            />
+          </div>
         </StyledContainer>
       </StyledItem>
       {isOpen && (
@@ -90,11 +84,6 @@ export const ListItem: React.FC<{ list: List; tasksCount: number }> = ({
             text="Delete"
           />
         </ActionMenu>
-      )}
-      {isModalOpen && (
-        <Modal onClick={handleModalOpen}>
-          <Button icon={AiOutlineClose} onClick={handleModalOpen} />
-        </Modal>
       )}
     </>
   );

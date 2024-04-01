@@ -24,6 +24,12 @@ export const theme = Object.freeze({
     transparent: 'transparent',
     currentColor: 'currentColor',
     asideBgNightColor: '#110E3B',
+    lightGreen: '#008000',
+    greenBorder: '#00800080',
+    lightBlue: '#5656e4',
+    blueBorder: '#5656e480',
+    lightCoral: '#cf1754',
+    coralBorder: '#cf175480',
   },
   shadows: {
     mainShadow: '2px 2px 4px 2px rgba(201,201,201,0.66);',
