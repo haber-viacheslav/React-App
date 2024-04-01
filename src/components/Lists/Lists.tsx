@@ -5,16 +5,8 @@ import { StyledTasks } from '../Tasks/Tasks.styled';
 import { ListItem } from './ListItem';
 import { TaskItem } from '../Tasks/TaskItem';
 import { useAppSelector, useAppDispatch } from '../../redux/hook/hook';
-import {
-  selectLists,
-  //   selectListsError,
-  //   selectListsIsLoading,
-} from '../../redux/lists/selectors';
-import {
-  selectTasks,
-  //   selectTasksError,
-  //   selectTasksIsLoading,
-} from '../../redux/tasks/selectors';
+import { selectLists } from '../../redux/lists/selectors';
+import { selectTasks } from '../../redux/tasks/selectors';
 import { fetchLists } from '../../redux/lists/operations';
 import { fetchTasks } from '../../redux/tasks/operations';
 import { setVariantAndOpen } from '../../redux/modal/modalSlice';
@@ -27,11 +19,8 @@ export const Lists: React.FC = () => {
 
   const dispatch = useAppDispatch();
   const lists = useAppSelector(selectLists);
-  //   const isListsLoading = useAppSelector(selectListsIsLoading);
-  //   const isListsError = useAppSelector(selectListsError);
+
   const tasks = useAppSelector(selectTasks);
-  //   const isTasksLoading = useAppSelector(selectTasksIsLoading);
-  //   const isTasksError = useAppSelector(selectTasksError);
 
   const handleSetVariant = (variant: ModalVariant): void => {
     dispatch(setVariantAndOpen({ variant }));

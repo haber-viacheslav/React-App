@@ -99,6 +99,20 @@ export interface ISelectProps {
   task: Task;
 }
 
+export interface IHistory {
+  id: number;
+  fieldName: string;
+  oldValue: string;
+  newValue: string;
+  createdAt: string;
+  taskId?: number;
+  action: string;
+  updatedAt: string;
+}
+export interface HistoryListProps {
+  histories: IHistory[];
+}
+
 export interface ITaskItemProps {
   task: Task;
 }
