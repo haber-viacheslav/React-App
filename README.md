@@ -5,7 +5,7 @@
 
 ![App Screenshot](https://res.cloudinary.com/dj6mkr2e6/image/upload/v1712004261/tasks_g7xcch.jpg)
 
-<a href="https://haber-viacheslav.github.io/task-board/">Task Board App Demo</a>
+<a href="haber-viacheslav.github.io/React-App/">Task Board App Demo</a>
 
 </div>
 
@@ -72,11 +72,11 @@ and [Node](https://nodejs.org/en/) installed.
 ## :checkered_flag: Installation
 
 1. Clone this repository to your local machine using
-   `git clone https://github.com/haber-viacheslav/task-board.git`
-2. Navigate to the project directory using `cd task-board`
+   `git clone https://github.com/haber-viacheslav/React-App/.git`
+2. Navigate to the project directory using `cd React-App`
 3. Run `npm install` to install the dependencies.
 4. Run `npm start` to start the development server.
-5. Open `http://localhost:3000/task-board` in your web browser.
+5. Open `http://localhost:3000/React-App` in your web browser.
 
 Made with :heart: by
 <a href="https://github.com/haber-viacheslav" target="_blank">Haber
